@@ -9,33 +9,49 @@ namespace csharp_game_hangman
     {
         static void Main(string[] args)
         {
-            string[] dictionnary = {"computer"};
+            string[] dictionnary = {"un", "deux"};
 
+            // loop over word array (1 loop = 1 word = 1 game)
             for(int i = 0, dicoSize = dictionnary.Length; i < dicoSize; i++)          
             {
                 char[] word = dictionnary[i].ToCharArray();
                 char[] hangman = new char[word.Length];
-
+                
                 for(int j = 0; j < word.Length; j++) hangman[j] = '-';
 
                 while(true)
                 {
+                    Console.Clear();
                     Console.WriteLine($"Mot à trouver {String.Join("", hangman)}");
                     Console.Write("Tapez votre lettre ");
                     ConsoleKeyInfo userGuess = Console.ReadKey();
+
                     for(int k = 0; k < word.Length; k++)
                     {
-                        if(userGuess.KeyChar == word[k]) hangman[k] = userGuess.KeyChar;
+                        if(userGuess.KeyChar == word[k]) hangman[k] = userGuess.KeyChar;                        
                     }
-                    Console.WriteLine();
+
                     if(String.Join("", word) == String.Join("", hangman)) 
                     {
-                        Console.WriteLine("Bien joué");
-                        break;
+                        Console.WriteLine("\nBien joué");                        
+
+                        if(i == dicoSize-1)
+                        {
+                            Console.Write("Bravo, vous avez trouvé tous les mots!");
+                            goto Stop;
+                        }
+                        else
+                        {
+                            Console.Write("Jouer un autre mot ? Y(es) N(o) ");
+                            ConsoleKeyInfo playAgain = Console.ReadKey();
+                            if(playAgain.KeyChar == 'n' || playAgain.KeyChar == 'N') goto Stop;
+                            else break;
+                        }
                     }                   
                 }
             }
-
+            Stop: 
+            Console.WriteLine("\nAu revoir");
         }
     }
 }
