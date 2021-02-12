@@ -17,7 +17,9 @@ namespace csharp_game_hangman
                 char[] word = dictionnary[i].ToCharArray();
                 char[] hangman = new char[word.Length];
                 
-                for(int j = 0; j < word.Length; j++) hangman[j] = '-';
+                //  create a blank word
+                for(int j = 0; j < word.Length; j++) 
+                    hangman[j] = '-';
 
                 while(true)
                 {
@@ -38,19 +40,25 @@ namespace csharp_game_hangman
                         if(i == dicoSize-1)
                         {
                             Console.Write("Bravo, vous avez trouvé tous les mots!");
-                            goto Stop;
+                            {
+                                i = dicoSize;
+                                break;
+                            }                            
                         }
                         else
                         {
                             Console.Write("Jouer un autre mot ? Y(es) N(o) ");
                             ConsoleKeyInfo playAgain = Console.ReadKey();
-                            if(playAgain.KeyChar == 'n' || playAgain.KeyChar == 'N') goto Stop;
+                            if(playAgain.KeyChar == 'n' || playAgain.KeyChar == 'N') 
+                            {
+                                i = dicoSize;
+                                break;
+                            }
                             else break;
                         }
                     }                   
                 }
-            }
-            Stop: 
+            }            
             Console.WriteLine("\nAu revoir");
         }
     }
