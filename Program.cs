@@ -10,11 +10,13 @@ namespace csharp_game_wordToFind
         static void Main(string[] args)
         {
             Hangman hangman = new Hangman();
+            string[] dico = Dico.GetWords;
 
             // loop over word array (1 loop = 1 word = 1 game)
-            for (int i = 0, dicoSize = Dico.dictionnary.Length; i < dicoSize; i++)
+            for (int i = 0, dicoSize = dico.Length; i < dicoSize; i++)
             {
-                char[] word = Dico.dictionnary[i].ToCharArray();
+                
+                char[] word = dico[i].ToCharArray();
                 char[] wordToFind = new char[word.Length];
                 int life = 0;
                 bool winOrLose = false;
@@ -26,6 +28,7 @@ namespace csharp_game_wordToFind
                 while (true)
                 {
                     Console.Clear();
+                    // Console.WriteLine(String.Join("",Dico.Dictionnary));
                     hangman.DrawHangman(0, 0, life);
 
                     if (String.Join("", word) == String.Join("", wordToFind))
