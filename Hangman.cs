@@ -1,66 +1,24 @@
 using System;
 class Hangman{
-        private string[] hangman = {
-@"  +---+
-      |
-      |
-      |
-      |
-      |
-=========",
-@"  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========",
-@"  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========",
-@"  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========",
-@"  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========",
-@"  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========",
-@"  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========",
-@"  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-========="
-    };
 
-    public void DrawHangman(int left, int top, int index)
+      private static string[][] hangman = new string[][] {        
+        new string[] {"   +---+","       |","       |","       |","       |","       |","========="},
+        new string[] {"   +---+","   |   |","       |","       |","       |","       |","========="},
+        new string[] {"   +---+","   |   |","   O   |","       |","       |","       |","========="},
+        new string[] {"   +---+","   |   |","   O   |","   |   |","       |","       |","========="},
+        new string[] {"   +---+","   |   |","   O   |","  /|   |","       |","       |","========="},
+        new string[] {"   +---+","   |   |","   O   |","  /|\\  |","       |","       |","========="},
+        new string[] {"   +---+","   |   |","   O   |","  /|\\  |","  /    |","       |","========="},
+        new string[] {"   +---+","   |   |","   O   |","  /|\\  |","  / \\  |", "       |","========="}};
+
+
+    public static void Draw(int left, int top, int index)
     {
-        Console.WriteLine(hangman[index]);
+       
+      for(int i = 0, row = hangman[index].Length; i < row; i++)
+      {           
+        Console.SetCursorPosition(left, top+i);
+        Console.WriteLine(String.Join("",hangman[index][i]));
+      }
     }
 }

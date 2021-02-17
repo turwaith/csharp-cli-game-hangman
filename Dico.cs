@@ -2,7 +2,9 @@ using System;
 
 class Dico
 {
-    private static string[] dictionnary = {"un", "deux", "trois", "quatre", "cinq"};
+    private static string[] dictionnary = {"computer", "mathematic", "ground", "building",
+                                           "journey", "program", "world", "game", "sport",
+                                           "intelligence", "nature", "space", "fortune"};
     public static string[] GetWords
     {
         get
